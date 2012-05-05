@@ -1,1 +1,6 @@
 gojabz-android/bin
+gojabz-android/gen
+
+gojabz-appengine/test-classes
+gojabz-appengine/war
+
