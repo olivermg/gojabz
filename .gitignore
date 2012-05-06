@@ -1,6 +1,12 @@
+.*.swp
+
 gojabz-android/bin
 gojabz-android/gen
 
 gojabz-appengine/test-classes
-gojabz-appengine/war
+gojabz-appengine/.gwt/.gwt-log
+gojabz-appengine/gwt-unitCache
+gojabz-appengine/war/WEB-INF/classes
+gojabz-appengine/war/WEB-INF/lib
+gojabz-appengine/war/WEB-INF/deploy
 
