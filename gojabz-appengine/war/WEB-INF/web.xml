@@ -16,6 +16,11 @@
     <servlet-class>com.gojabz.server.OwTestService</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>owTestScalaServlet</servlet-name>
+    <servlet-class>com.gojabz.server.OwTestScalaService</servlet-class>
+  </servlet>
+    
   <servlet-mapping>
     <servlet-name>greetServlet</servlet-name>
     <url-pattern>/gojabz_appengine/greet</url-pattern>
@@ -24,6 +29,11 @@
     <servlet-mapping>
     <servlet-name>owTestServlet</servlet-name>
     <url-pattern>/gojabz_appengine/owtest</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>owTestScalaServlet</servlet-name>
+    <url-pattern>/gojabz_appengine/owtestscala</url-pattern>
   </servlet-mapping>
 
   <!-- Default page to serve -->

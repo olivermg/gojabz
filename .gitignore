@@ -9,4 +9,5 @@ gojabz-appengine/gwt-unitCache
 gojabz-appengine/war/WEB-INF/classes
 gojabz-appengine/war/WEB-INF/lib
 gojabz-appengine/war/WEB-INF/deploy
+gojabz-appengine/.cache
 
