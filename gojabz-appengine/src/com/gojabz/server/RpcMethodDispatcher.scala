@@ -2,17 +2,27 @@ package com.gojabz.server
 
 import java.lang.reflect.Method
 
-class RpcMethodDispatcher {
+class RpcMethodDispatcher( val basePackage: String ) {
 
-  private def searchRpcMethod(method: String): Array[Method] = {
-    val aClass = this.getClass
-    println("this name: " + aClass.getName)
-    val methods = aClass.getMethods
-    methods
+  private def searchRpcMethod( aClass: Class[_], methodName: String ): Method = {
+    val method = aClass.getMethod( methodName )
+    method
   }
 
-  def runRpcMethod(method: String) = {
-    val methods = searchRpcMethod(method)
-    methods.foreach(m => println(m.getName))
+  private def searchRpcClass( className: String ): Class[_] = {
+    val aClass = Class.forName( basePackage + className )
+    println( "found class " + aClass.getName )
+    aClass
+  }
+
+  def runRpcMethod( rpcClassName: String, rpcMethodName: String ) = {
+    val rpcClass = searchRpcClass( rpcClassName )
+    val rpcClassInstance = rpcClass.getConstructor().newInstance()
+    val rpcMethod = searchRpcMethod( rpcClass, rpcMethodName )
+
+    println( "invoking method " + rpcMethod.getName + " on instance of "
+        + rpcClassInstance.getClass.getName + "..." )
+    rpcMethod.invoke( rpcClassInstance )
+    println( "done with " + rpcMethod.getName )
   }
 }

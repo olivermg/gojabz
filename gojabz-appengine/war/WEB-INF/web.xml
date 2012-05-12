@@ -33,7 +33,7 @@
 
   <servlet-mapping>
     <servlet-name>owTestScalaServlet</servlet-name>
-    <url-pattern>/gojabz_appengine/owtestscala</url-pattern>
+    <url-pattern>/gojabz_appengine/owtestscala/*</url-pattern>
   </servlet-mapping>
 
   <!-- Default page to serve -->
