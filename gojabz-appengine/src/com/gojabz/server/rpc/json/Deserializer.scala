@@ -15,8 +15,8 @@ import com.google.gson.Gson
  */
 
 object Deserializer {
-	def deserialize( input: String ): TestDto = {
+	def deserialize( input: String, clazz: Class[_] ): Any = {
 		val gson = new Gson
-		gson.fromJson( input, classOf[TestDto] )
+		gson.fromJson( input, clazz )
 	}
 }

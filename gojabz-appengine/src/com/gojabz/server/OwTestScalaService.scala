@@ -17,7 +17,12 @@ class OwTestScalaService extends HttpServlet {
     rpcDispatcher.runRpcMethod(rpcClassName, request.getQueryString)
 
     // test json deserializer:
-    val testDto = Deserializer.deserialize( "{ code:3, message:\"json parsed!\" }" )
+    val deserialized = Deserializer.deserialize( "{ code:3, message:\"json parsed!\" }", classOf[TestDto] )
+    // type casting (maybe we can improve this):
+    val testDto = deserialized match {
+      case d: TestDto => d
+      case _ => throw new Exception
+    }
     println( "code: " + testDto.code + ", message: " + testDto.message )
   }
 
