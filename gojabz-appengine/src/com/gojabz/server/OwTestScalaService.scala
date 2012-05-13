@@ -15,9 +15,9 @@ class OwTestScalaService extends HttpServlet {
     val rpcDispatcher = new RpcMethodDispatcher("com.gojabz.server")
     val rpcClassName = request.getPathInfo.replace('/', '.')
     rpcDispatcher.runRpcMethod(rpcClassName, request.getQueryString)
-    
+
     // test json deserializer:
-    val testDto = Deserializer.deserialize( "{ code:3, message:\"blabla\" }" )
+    val testDto = Deserializer.deserialize( "{ code:3, message:\"json parsed!\" }" )
     println( "code: " + testDto.code + ", message: " + testDto.message )
   }
 

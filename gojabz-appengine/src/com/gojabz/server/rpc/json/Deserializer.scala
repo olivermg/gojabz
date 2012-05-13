@@ -8,6 +8,10 @@ import com.google.gson.Gson
  *
  * also have a look at the doc for instance creators:
  * http://google-gson.googlecode.com/svn/tags/1.2.3/docs/javadocs/com/google/gson/InstanceCreator.html
+ * 
+ * later on, we maybe also want to use custom (de)serializers for our DTOs:
+ * https://sites.google.com/site/gson/gson-user-guide#TOC-Custom-Serialization-and-Deserialization
+ * this would be necessary to enforce parameter checking for JSON requests
  */
 
 object Deserializer {
