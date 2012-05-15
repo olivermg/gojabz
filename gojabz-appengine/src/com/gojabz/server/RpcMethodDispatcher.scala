@@ -1,6 +1,7 @@
 package com.gojabz.server
 
 import java.lang.reflect.Method
+import com.gojabz.server.rpc.RpcClass
 
 class RpcMethodDispatcher( val basePackage: String ) {
 
@@ -12,6 +13,10 @@ class RpcMethodDispatcher( val basePackage: String ) {
   private def searchRpcClass( className: String ): Class[_] = {
     val aClass = Class.forName( basePackage + className )
     println( "found class " + aClass.getName )
+    if ( ! aClass.getInterfaces.contains( classOf[RpcClass] ) ) {
+      // TODO: define custom exceptions:
+      throw new IllegalArgumentException
+    }
     aClass
   }
 
