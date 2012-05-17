@@ -1,6 +1,8 @@
 package com.gojabz.server.rpc
 
+import com.gojabz.server.rpc.dto.BaseDto
+
 trait RpcClass {
-	def getRequestObject: Any
-	def getResponseObject: Any
+	def getRequestObject: Class[_ <: BaseDto]
+	def getResponseObject: Class[_ <: BaseDto]
 }
