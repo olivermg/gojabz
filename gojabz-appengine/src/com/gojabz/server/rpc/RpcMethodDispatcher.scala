@@ -1,7 +1,6 @@
-package com.gojabz.server
+package com.gojabz.server.rpc
 
 import java.lang.reflect.Method
-import com.gojabz.server.rpc.RpcClass
 
 class RpcMethodDispatcher( val basePackage: String ) {
 
