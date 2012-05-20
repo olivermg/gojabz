@@ -3,6 +3,7 @@ package com.gojabz.server.rpc.json
 import com.gojabz.server.rpc.dto.TestDto
 import com.google.gson.Gson
 import com.gojabz.server.rpc.Deserializer
+import com.gojabz.server.rpc.dto.BaseDto
 
 /*
  * for gson usage examples, view https://sites.google.com/site/gson/gson-user-guide
@@ -17,7 +18,7 @@ import com.gojabz.server.rpc.Deserializer
 
 class JsonDeserializer extends Deserializer {
 
-	override def deserialize( clazz: Class[_], input: String ): Any = {
+	override def deserialize( clazz: Class[_ <: BaseDto], input: String ): BaseDto = {
 		val gson = new Gson
 		gson.fromJson( input, clazz )
 	}
