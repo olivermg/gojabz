@@ -2,6 +2,7 @@ package com.gojabz.server.rpc.json
 
 import com.gojabz.server.rpc.dto.TestDto
 import com.google.gson.Gson
+import com.gojabz.server.rpc.Deserializer
 
 /*
  * for gson usage examples, view https://sites.google.com/site/gson/gson-user-guide
@@ -14,9 +15,11 @@ import com.google.gson.Gson
  * this would be necessary to enforce parameter checking for JSON requests
  */
 
-object Deserializer {
-	def deserialize( input: String, clazz: Class[_] ): Any = {
+class JsonDeserializer extends Deserializer {
+
+	override def deserialize( clazz: Class[_], input: String ): Any = {
 		val gson = new Gson
 		gson.fromJson( input, clazz )
 	}
+
 }
