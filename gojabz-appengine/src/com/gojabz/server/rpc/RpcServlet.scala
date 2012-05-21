@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import com.gojabz.server.rpc.dto.TestDto
-import com.gojabz.server.rpc.json.JsonDeserializer
+import com.gojabz.server.rpc.json.JsonSerializer
 
 class RpcServlet extends HttpServlet {
 
@@ -19,7 +19,7 @@ class RpcServlet extends HttpServlet {
     rpcDispatcher.runRpcMethod(rpcClassName, request.getQueryString)
 
     // test json deserializer:
-    val deserializer = new JsonDeserializer
+    val deserializer = new JsonSerializer
     val deserialized = deserializer.deserialize( classOf[TestDto],
         "{ code:3, message:\"json parsed!\" }" )
     // type casting (maybe we can improve this):
