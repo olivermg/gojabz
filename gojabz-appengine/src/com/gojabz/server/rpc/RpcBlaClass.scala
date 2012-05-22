@@ -13,7 +13,8 @@ class RpcBlaClass extends RpcClass {
     classOf[TestDto]
   }
 
-  protected def labern = {
+  def labern: TestDto = {
     println("ich labere jetzt!")
+    new TestDto( 123, "gelabert!" )
   }
 }

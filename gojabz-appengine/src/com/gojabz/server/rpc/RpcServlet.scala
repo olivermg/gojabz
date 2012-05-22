@@ -10,23 +10,22 @@ class RpcServlet extends HttpServlet {
 
   private val basePackage = "com.gojabz.server.rpc"
 
-  override def doGet(request: HttpServletRequest, response: HttpServletResponse) = {
-    response.getOutputStream.print("called scala doGet() from URI "
-      + request.getPathInfo + ", " + request.getQueryString)
+  override def doPost(request: HttpServletRequest, response: HttpServletResponse) = {
+    println("called scala doGet() from URI " + request.getPathInfo + ", " + request.getQueryString)
     val rpcDispatcher = new RpcMethodDispatcher( basePackage )
     val rpcClassName = request.getPathInfo.replace('/', '.')
-    // TODO: make method name the last element of the path instead of the query string:
-    rpcDispatcher.runRpcMethod(rpcClassName, request.getQueryString)
+    val rpcBody = request.getReader.readLine
+    println( "body: " + rpcBody )
 
-    // test json deserializer:
-    val deserializer = new JsonSerializer
-    val deserialized = deserializer.deserialize( classOf[TestDto],
-        "{ code:3, message:\"json parsed!\" }" )
-    // type casting (maybe we can improve this):
-    val testDto = deserialized match {
-      case d: TestDto => d
-      case _ => throw new IllegalArgumentException
-    }
+    // TODO: make method name the last element of the path instead of the query string:
+    val responseDto = rpcDispatcher.runRpcMethod(rpcClassName, request.getQueryString, rpcBody)
+    
+    // TODO: just a test here. figure out sane logic without explicit type casting:
+    val testDto = responseDto.asInstanceOf[TestDto]
     println( "code: " + testDto.code + ", message: " + testDto.message )
+
+    // TODO: find out response dto class properly:
+    val serializer = SerializerFactory.getInstance
+    response.getOutputStream.print( serializer.serialize( classOf[TestDto], responseDto ) + "\n" )
   }
 }
